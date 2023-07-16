@@ -885,8 +885,6 @@ To work with the XML setting file, we have used the Xml Pattern(https://github.c
   <ul>
   <li><b>Email:</b> AUA_Framework@yahoo.com - support@auaframework.com</li>
   <li><b>WebSite:</b>https://auaframework.com</li>
-  <li><b>Phone:</b>+98-9199906342</li>
-
 </ul> 
  
  
