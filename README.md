@@ -880,7 +880,7 @@ To work with the XML setting file, we have used the Xml Pattern(https://github.c
  
  Note that the AUA framework can also be used for Windows form application, WPF, etc., because the last layer changes. The AUA framework is beyond the scope of this document. This document is just aimed at familiarizing you with how to work with the AUA framework. Using this document and tutorial videos, the programmer, regardless of his/her level, can work with this framework within just a week.
  
- The AUA framework has tutorial videos for all stages and can be easily worked with. You can download the tutorial video on how to work with the AUA framework from the Hilton website at www.heilton.com or  www.youtube.com.
+ The AUA framework has tutorial videos for all stages and can be easily worked with. You can download the tutorial video on how to work with the AUA framework from the Hilton website at www.heilton.com.
  
   <ul>
   <li><b>Email:</b> AUA_Framework@yahoo.com - support@auaframework.com</li>
