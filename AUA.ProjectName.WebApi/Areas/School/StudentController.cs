@@ -1,10 +1,10 @@
 ﻿using AUA.ProjectName.Common.Enums;
-using AUA.ProjectName.DomainEntities.Entities.Accounting;
 using AUA.ProjectName.DomainEntities.Entities.School;
 using AUA.ProjectName.Models.BaseModel.BaseViewModels;
 using AUA.ProjectName.Models.EntitiesDto.School;
 using AUA.ProjectName.Models.ViewModels.School;
 using AUA.ProjectName.Services.EntitiesService.School.Contracts;
+using AUA.ProjectName.ValidationServices.School.StudentValidations.Contracts;
 using AUA.ProjectName.WebApi.Controllers;
 using AUA.ProjectName.WebApi.Utility.ApiAuthorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,11 +15,16 @@ namespace AUA.ProjectName.WebApi.Areas.School
     [WebApiAuthorize(EUserAccess.Student)]
     public class StudentController : BaseApiController
     {
-        private readonly IStudentService _studentService;
 
-        public StudentController(IStudentService studentService)
+        private readonly IStudentService _studentService;
+        private readonly IInsertStudentDtoValidationService _insertStudentDtoValidationService;
+
+
+        public StudentController(IStudentService studentService
+                                             , IInsertStudentDtoValidationService insertStudentDtoValidationService)
         {
             _studentService = studentService;
+            _insertStudentDtoValidationService = insertStudentDtoValidationService;
         }
 
         [WebApiAuthorize(EUserAccess.AppUser)]
@@ -76,6 +81,18 @@ namespace AUA.ProjectName.WebApi.Areas.School
             return CreateSuccessResult(studentVms);
         }
 
+
+        public async Task<ResultModel<int>> InsertAsync(StudentDto studentDto)
+        {
+            ValidationResultVm = _insertStudentDtoValidationService.Validation(studentDto);
+
+            if (HasError)
+                return CreateInvalidResult<int>();
+
+            var studentId = await _studentService.InsertAsync(studentDto);
+
+            return CreateSuccessResult(studentId);
+        }
 
     }
 }
