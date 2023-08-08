@@ -6,6 +6,8 @@ using AUA.ProjectName.ValidationServices.Accounting.RoleValidation.Contracts;
 using AUA.ProjectName.ValidationServices.Accounting.RoleValidation.Services;
 using AUA.ProjectName.ValidationServices.School.StudentValidations.Contracts;
 using AUA.ProjectName.ValidationServices.School.StudentValidations.Services;
+using AUA.ProjectName.ValidationServices.School.TeacherValidations.Contracts;
+using AUA.ProjectName.ValidationServices.School.TeacherValidations.Services;
 
 namespace AUA.ProjectName.WebApi.RegistrationServices
 {
@@ -34,6 +36,7 @@ namespace AUA.ProjectName.WebApi.RegistrationServices
         private static void SchoolValidationService(this IServiceCollection services)
         {
             services.AddScoped<IInsertStudentDtoValidationService, InsertStudentDtoValidationService>();
+            services.AddScoped<IInsertTeacherDtoValidationService, InsertTeacherDtoValidationService>();
         }
 
 
