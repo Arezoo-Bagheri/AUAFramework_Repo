@@ -9,5 +9,7 @@
 
         public const string Products = "products";
 
+        public const string School = "Sch";
+
     }
 }

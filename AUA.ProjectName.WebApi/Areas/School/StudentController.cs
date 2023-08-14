@@ -2,8 +2,10 @@
 using AUA.ProjectName.DomainEntities.Entities.School;
 using AUA.ProjectName.Models.BaseModel.BaseViewModels;
 using AUA.ProjectName.Models.EntitiesDto.School;
+using AUA.ProjectName.Models.ListModes.School.StudentModels;
 using AUA.ProjectName.Models.ViewModels.School;
 using AUA.ProjectName.Services.EntitiesService.School.Contracts;
+using AUA.ProjectName.Services.ListService.School.Contracts;
 using AUA.ProjectName.ValidationServices.School.StudentValidations.Contracts;
 using AUA.ProjectName.WebApi.Controllers;
 using AUA.ProjectName.WebApi.Utility.ApiAuthorization;
@@ -12,22 +14,39 @@ using Microsoft.AspNetCore.Mvc;
 namespace AUA.ProjectName.WebApi.Areas.School
 {
 
-    [WebApiAuthorize(EUserAccess.Student)]
+    // [WebApiAuthorize(EUserAccess.Student)]
     public class StudentController : BaseApiController
     {
 
         private readonly IStudentService _studentService;
         private readonly IInsertStudentDtoValidationService _insertStudentDtoValidationService;
+        private readonly IStudentListService _studentListService;
 
 
         public StudentController(IStudentService studentService
-                                             , IInsertStudentDtoValidationService insertStudentDtoValidationService)
+                                             , IInsertStudentDtoValidationService insertStudentDtoValidationService
+                                             , IStudentListService studentListService)
         {
             _studentService = studentService;
             _insertStudentDtoValidationService = insertStudentDtoValidationService;
+            _studentListService = studentListService;
         }
 
-        [WebApiAuthorize(EUserAccess.AppUser)]
+
+        [HttpPost]
+        public async Task<ResultModel<ListResultVm<StudentListDto>>> GetListAsync(StudentSearchVm searchVm)
+        {
+            ValidationSearchVm(searchVm);
+
+            if (HasError)
+                return CreateInvalidResult<ListResultVm<StudentListDto>>();
+
+            var result = await _studentListService.ListAsync(searchVm);
+            return CreateSuccessResult(result);
+
+        }
+
+
         [HttpPost]
         public async Task<ResultModel<bool>> ShowTestAsync()
         {
