@@ -21,8 +21,4 @@
     <ProjectReference Include="..\AUA.ProjectName.DomainEntities\AUA.ProjectName.DomainEntities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

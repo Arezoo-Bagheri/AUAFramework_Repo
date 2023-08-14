@@ -1,11 +1,9 @@
-﻿using AUA.ProjectName.Common.Consts;
-using AUA.ProjectName.DomainEntities.BaseEntities;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using AUA.ProjectName.DomainEntities.BaseEntities;
 
 namespace AUA.ProjectName.DomainEntities.Entities.School
 {
 
-    [Table("StudentTeacher", Schema = SchemaConsts.School)]
+    //  [Table("StudentTeacher", Schema = SchemaConsts.School)]
     public class StudentTeacher : DomainEntity<long>
     {
         public int StudentId { get; set; }
