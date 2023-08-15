@@ -1,7 +1,9 @@
 ﻿using AUA.ProjectName.Models.BaseModel.BaseViewModels;
 using AUA.ProjectName.Models.EntitiesDto.School;
+using AUA.ProjectName.Models.ListModes.School.TeacherModels;
 using AUA.ProjectName.Models.ViewModels.School;
 using AUA.ProjectName.Services.EntitiesService.School.Contracts;
+using AUA.ProjectName.Services.ListService.School.Contracts;
 using AUA.ProjectName.ValidationServices.School.TeacherValidations.Contracts;
 using AUA.ProjectName.WebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +15,30 @@ namespace AUA.ProjectName.WebApi.Areas.School
     {
         private readonly ITeacherService _teacherService;
         private readonly IInsertTeacherDtoValidationService _insertTeacherDtoValidationService;
+        private readonly ITeacherListService _teacherListService;
 
         public TeacherController(ITeacherService teacherService
-                                              , IInsertTeacherDtoValidationService insertTeacherDtoValidationService)
+                                              , IInsertTeacherDtoValidationService insertTeacherDtoValidationService
+                                              , ITeacherListService teacherListService)
         {
             _teacherService = teacherService;
             _insertTeacherDtoValidationService = insertTeacherDtoValidationService;
+            _teacherListService = teacherListService;
+        }
+
+
+        [HttpPost]
+        public async Task<ResultModel<ListResultVm<TeacherListDto>>> GetListAsync(TeacherSearchVm searchVm)
+        {
+            ValidationSearchVm(searchVm);
+
+            if (HasError)
+                return CreateInvalidResult<ListResultVm<TeacherListDto>>();
+
+            var result = await _teacherListService.ListAsync(searchVm);
+
+            return CreateSuccessResult(result);
+
         }
 
         [HttpPost]

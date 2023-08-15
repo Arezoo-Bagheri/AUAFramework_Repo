@@ -27,6 +27,7 @@ namespace AUA.ProjectName.WebApi.RegistrationServices
         public static void RegistrationSchoolListService(this IServiceCollection services)
         {
             services.AddScoped<IStudentListService, StudentListService>();
+            services.AddScoped<ITeacherListService, TeacherListService>();
         }
 
 

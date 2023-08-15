@@ -1,10 +1,16 @@
-﻿using System.Globalization;
-using AUA.ProjectName.Common.Consts;
+﻿using AUA.ProjectName.Common.Consts;
+using System.Globalization;
 
 namespace AUA.ProjectName.Common.Extensions
 {
     public static class DateTimeExtension
     {
+
+        public static bool IsEmpty(this DateTime? date)
+        {
+            return !date.HasValue ||
+                        date == DateTime.MinValue;
+        }
 
         public static string ToPersianDate(this DateTime date)
         {
