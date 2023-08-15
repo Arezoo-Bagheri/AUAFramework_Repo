@@ -12,6 +12,9 @@ namespace AUA.ProjectName.DataLayer.Migrations
             migrationBuilder.EnsureSchema(
                 name: "acc");
 
+            migrationBuilder.EnsureSchema(
+                name: "Sch");
+
             migrationBuilder.CreateTable(
                 name: "ActiveAccessToken",
                 schema: "acc",
@@ -73,6 +76,44 @@ namespace AUA.ProjectName.DataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Student",
+                schema: "Sch",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    RegistrationDate = table.Column<DateTime>(type: "datetime2(3)", nullable: false, defaultValueSql: "GetDate()"),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Student", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Teacher",
+                schema: "Sch",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    RegistrationDate = table.Column<DateTime>(type: "datetime2(3)", nullable: false, defaultValueSql: "GetDate()"),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Teacher", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserAccess",
                 schema: "acc",
                 columns: table => new
@@ -123,6 +164,38 @@ namespace AUA.ProjectName.DataLayer.Migrations
                         principalSchema: "acc",
                         principalTable: "Role",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentTeacher",
+                schema: "Sch",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentId = table.Column<int>(type: "int", nullable: false),
+                    TeacherId = table.Column<long>(type: "bigint", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    RegistrationDate = table.Column<DateTime>(type: "datetime2(3)", nullable: false, defaultValueSql: "GetDate()"),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentTeacher", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StudentTeacher_Student_StudentId",
+                        column: x => x.StudentId,
+                        principalSchema: "Sch",
+                        principalTable: "Student",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StudentTeacher_Teacher_TeacherId",
+                        column: x => x.TeacherId,
+                        principalSchema: "Sch",
+                        principalTable: "Teacher",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -202,6 +275,18 @@ namespace AUA.ProjectName.DataLayer.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_StudentTeacher_StudentId",
+                schema: "Sch",
+                table: "StudentTeacher",
+                column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentTeacher_TeacherId",
+                schema: "Sch",
+                table: "StudentTeacher",
+                column: "TeacherId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserRole_AppUserId",
                 schema: "acc",
                 table: "UserRole",
@@ -233,12 +318,24 @@ namespace AUA.ProjectName.DataLayer.Migrations
                 schema: "acc");
 
             migrationBuilder.DropTable(
+                name: "StudentTeacher",
+                schema: "Sch");
+
+            migrationBuilder.DropTable(
                 name: "UserRole",
                 schema: "acc");
 
             migrationBuilder.DropTable(
                 name: "UserRoleAccess",
                 schema: "acc");
+
+            migrationBuilder.DropTable(
+                name: "Student",
+                schema: "Sch");
+
+            migrationBuilder.DropTable(
+                name: "Teacher",
+                schema: "Sch");
 
             migrationBuilder.DropTable(
                 name: "AppUser",

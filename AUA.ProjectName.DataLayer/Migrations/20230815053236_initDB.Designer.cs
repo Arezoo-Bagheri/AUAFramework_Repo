@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AUA.ProjectName.DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationEfContext))]
-    [Migration("20230706154408_initDB")]
+    [Migration("20230815053236_initDB")]
     partial class initDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -438,6 +438,116 @@ namespace AUA.ProjectName.DataLayer.Migrations
                         });
                 });
 
+            modelBuilder.Entity("AUA.ProjectName.DomainEntities.Entities.School.Student", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2(3)")
+                        .HasDefaultValueSql("GetDate()");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Student", "Sch");
+                });
+
+            modelBuilder.Entity("AUA.ProjectName.DomainEntities.Entities.School.StudentTeacher", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2(3)")
+                        .HasDefaultValueSql("GetDate()");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<long>("TeacherId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("StudentTeacher", "Sch");
+                });
+
+            modelBuilder.Entity("AUA.ProjectName.DomainEntities.Entities.School.Teacher", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2(3)")
+                        .HasDefaultValueSql("GetDate()");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Teacher", "Sch");
+                });
+
             modelBuilder.Entity("AUA.ProjectName.DomainEntities.Entities.Accounting.UserRole", b =>
                 {
                     b.HasOne("AUA.ProjectName.DomainEntities.Entities.Accounting.AppUser", "AppUser")
@@ -476,6 +586,25 @@ namespace AUA.ProjectName.DataLayer.Migrations
                     b.Navigation("UserAccess");
                 });
 
+            modelBuilder.Entity("AUA.ProjectName.DomainEntities.Entities.School.StudentTeacher", b =>
+                {
+                    b.HasOne("AUA.ProjectName.DomainEntities.Entities.School.Student", "Student")
+                        .WithMany("StudentTeachers")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AUA.ProjectName.DomainEntities.Entities.School.Teacher", "Teacher")
+                        .WithMany("StudentTeachers")
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Teacher");
+                });
+
             modelBuilder.Entity("AUA.ProjectName.DomainEntities.Entities.Accounting.AppUser", b =>
                 {
                     b.Navigation("UserRoles");
@@ -491,6 +620,16 @@ namespace AUA.ProjectName.DataLayer.Migrations
             modelBuilder.Entity("AUA.ProjectName.DomainEntities.Entities.Accounting.UserAccess", b =>
                 {
                     b.Navigation("RoleAccesses");
+                });
+
+            modelBuilder.Entity("AUA.ProjectName.DomainEntities.Entities.School.Student", b =>
+                {
+                    b.Navigation("StudentTeachers");
+                });
+
+            modelBuilder.Entity("AUA.ProjectName.DomainEntities.Entities.School.Teacher", b =>
+                {
+                    b.Navigation("StudentTeachers");
                 });
 #pragma warning restore 612, 618
         }

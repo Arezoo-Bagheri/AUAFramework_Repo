@@ -470,7 +470,7 @@ namespace AUA.ProjectName.DataLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Student");
+                    b.ToTable("Student", "Sch");
                 });
 
             modelBuilder.Entity("AUA.ProjectName.DomainEntities.Entities.School.StudentTeacher", b =>
@@ -504,7 +504,7 @@ namespace AUA.ProjectName.DataLayer.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("StudentTeacher");
+                    b.ToTable("StudentTeacher", "Sch");
                 });
 
             modelBuilder.Entity("AUA.ProjectName.DomainEntities.Entities.School.Teacher", b =>
@@ -543,7 +543,7 @@ namespace AUA.ProjectName.DataLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Teacher");
+                    b.ToTable("Teacher", "Sch");
                 });
 
             modelBuilder.Entity("AUA.ProjectName.DomainEntities.Entities.Accounting.UserRole", b =>
