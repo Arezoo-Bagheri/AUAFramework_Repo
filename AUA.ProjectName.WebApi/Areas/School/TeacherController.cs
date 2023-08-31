@@ -1,4 +1,5 @@
-﻿using AUA.ProjectName.Models.BaseModel.BaseViewModels;
+﻿using AUA.ProjectName.DomainEntities.Entities.School;
+using AUA.ProjectName.Models.BaseModel.BaseViewModels;
 using AUA.ProjectName.Models.EntitiesDto.School;
 using AUA.ProjectName.Models.ListModes.School.TeacherModels;
 using AUA.ProjectName.Models.ViewModels.School;
@@ -24,6 +25,22 @@ namespace AUA.ProjectName.WebApi.Areas.School
             _teacherService = teacherService;
             _insertTeacherDtoValidationService = insertTeacherDtoValidationService;
             _teacherListService = teacherListService;
+        }
+
+
+        public async Task<ResultModel<bool>> SoftDeleteTestAsync()
+        {
+            var teacher = new Teacher
+            {
+                FirstName = "Rahim",
+                LastName = "Lotfi"
+            };
+
+            var teacherId = await _teacherService.InsertAsync(teacher);
+
+            await _teacherService.SoftDeleteAsync(teacherId);
+
+            return CreateSuccessResult(true);
         }
 
 

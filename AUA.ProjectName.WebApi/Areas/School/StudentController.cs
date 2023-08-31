@@ -1,5 +1,4 @@
-﻿using AUA.ProjectName.Common.Enums;
-using AUA.ProjectName.DomainEntities.Entities.School;
+﻿using AUA.ProjectName.DomainEntities.Entities.School;
 using AUA.ProjectName.Models.BaseModel.BaseViewModels;
 using AUA.ProjectName.Models.EntitiesDto.School;
 using AUA.ProjectName.Models.ListModes.School.StudentModels;
@@ -8,7 +7,6 @@ using AUA.ProjectName.Services.EntitiesService.School.Contracts;
 using AUA.ProjectName.Services.ListService.School.Contracts;
 using AUA.ProjectName.ValidationServices.School.StudentValidations.Contracts;
 using AUA.ProjectName.WebApi.Controllers;
-using AUA.ProjectName.WebApi.Utility.ApiAuthorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AUA.ProjectName.WebApi.Areas.School
@@ -30,6 +28,22 @@ namespace AUA.ProjectName.WebApi.Areas.School
             _studentService = studentService;
             _insertStudentDtoValidationService = insertStudentDtoValidationService;
             _studentListService = studentListService;
+        }
+
+
+        public async Task<ResultModel<bool>> SoftDeleteTestAsync()
+        {
+            var student = new Student
+            {
+                FirstName = "Arezoo",
+                LastName = "Bagheri"
+            };
+
+            var studentId = await _studentService.InsertAsync(student);
+
+            await _studentService.SoftDeleteAsync(studentId);
+
+            return CreateSuccessResult(true);
         }
 
 

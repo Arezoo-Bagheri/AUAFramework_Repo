@@ -26,6 +26,9 @@ namespace AUA.ProjectName.DomainEntities.EntitiesConfig.School
             builder
            .Property(p => p.IsActive)
            .IsRequired();
+
+            builder
+              .HasQueryFilter(p => !p.IsDeleted);
         }
     }
 }

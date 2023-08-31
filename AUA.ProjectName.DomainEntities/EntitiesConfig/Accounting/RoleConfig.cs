@@ -20,6 +20,9 @@ namespace AUA.ProjectName.DomainEntities.EntitiesConfig.Accounting
 
             //builder
             //    .HasQueryFilter(p => p.IsActive);
+
+            builder
+                .HasQueryFilter(p => !p.IsDeleted);
         }
 
     }
