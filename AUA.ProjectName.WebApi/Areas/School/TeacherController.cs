@@ -61,6 +61,12 @@ namespace AUA.ProjectName.WebApi.Areas.School
         [HttpPost]
         public async Task<ResultModel<long>> InsertAsync(TeacherDto teacherDto)
         {
+
+            // Update Audit : 
+            //teacherDto.ModifierUserId = UserId;
+            //teacherDto.ModifyDate = DateTime.Now;
+
+
             ValidationResultVm = _insertTeacherDtoValidationService.Validation(teacherDto);
 
             if (HasError)
