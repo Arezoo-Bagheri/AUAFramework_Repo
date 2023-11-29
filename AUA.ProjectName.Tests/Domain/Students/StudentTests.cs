@@ -46,7 +46,7 @@ namespace AUA.ProjectName.Tests.Domain.Students
         }
 
         [Fact]
-        public async Task When_pass_correct_values_to_factory_expect_person_update()
+        public async Task When_pass_correct_values_to_factory_expect_student_update()
         {
             var student = _fixture.Create<Student>();
             _mock.Setup(repo => repo.UpdateStudentAsync(It.IsAny<Student>())).ReturnsAsync(student);
