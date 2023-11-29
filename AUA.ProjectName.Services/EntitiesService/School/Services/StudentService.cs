@@ -20,5 +20,12 @@ namespace AUA.ProjectName.Services.EntitiesService.School.Services
             return student;
         }
 
+        public async Task<Student> UpdateStudentAsync(Student student)
+        {
+            _context.Update(student);
+            await _context.SaveChangesAsync();
+            return student;
+        }
+
     }
 }

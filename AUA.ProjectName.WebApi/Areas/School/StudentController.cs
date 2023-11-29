@@ -25,5 +25,11 @@ namespace AUA.ProjectName.WebApi.Areas.School
             return Ok(student);
         }
 
+        [HttpPut]
+        public async Task<IActionResult> PutStudent([FromBody] Student student)
+        {
+            await _studentService.UpdateStudentAsync(student);
+            return Ok(student);
+        }
     }
 }

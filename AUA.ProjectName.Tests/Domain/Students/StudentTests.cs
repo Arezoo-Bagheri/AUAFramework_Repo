@@ -25,7 +25,7 @@ namespace AUA.ProjectName.Tests.Domain.Students
 
 
         [Fact]
-        public async Task When_pass_correct_values_To_Factory_expect_student_create()
+        public async Task When_pass_correct_values_to_factory_expect_student_create()
         {
             var student = _fixture.Create<Student>();
             _mock.Setup(repo => repo.AddStudentAsync(It.IsAny<Student>())).ReturnsAsync(student);
@@ -43,6 +43,28 @@ namespace AUA.ProjectName.Tests.Domain.Students
             var result = await _studentController.PostStudent(new Student { Id = 10, FirstName = "arezoo" });
             var obj = result as ObjectResult;
             Assert.NotEqual(400, obj?.StatusCode);
+        }
+
+        [Fact]
+        public async Task When_pass_correct_values_to_factory_expect_person_update()
+        {
+            var student = _fixture.Create<Student>();
+            _mock.Setup(repo => repo.UpdateStudentAsync(It.IsAny<Student>())).ReturnsAsync(student);
+            _studentController = new StudentController(_mock.Object);
+            var result = await _studentController.PutStudent(student);
+            var obj = result as ObjectResult;
+            Assert.True(obj.StatusCode == 200);
+        }
+
+        [Fact]
+        public async Task When_pass_invalid_business_id_and_name_to_factory_expect_invalid_student_exception()
+        {
+            _mock.Setup(repo => repo.UpdateStudentAsync(new Student { Id = 1, FirstName = "" })).Throws(new Exception());
+            _studentController = new StudentController(_mock.Object);
+            var result = await _studentController.PutStudent(new Student { Id = 1, FirstName = "arezoo" });
+            var obj = result as ObjectResult;
+            Assert.NotEqual(400, obj?.StatusCode);
+
         }
 
     }
