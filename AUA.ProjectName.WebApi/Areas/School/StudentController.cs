@@ -12,10 +12,15 @@ namespace AUA.ProjectName.WebApi.Areas.School
 
         private readonly IStudentService _studentService;
 
-
         public StudentController(IStudentService studentService)
         {
             _studentService = studentService;
+        }
+
+        [HttpGet]
+        public IEnumerable<Student> GetAllStudents()
+        {
+            return _studentService.GetAllStudents();
         }
 
         [HttpPost]
@@ -31,5 +36,13 @@ namespace AUA.ProjectName.WebApi.Areas.School
             await _studentService.UpdateStudentAsync(student);
             return Ok(student);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetStudentById(int id)
+        {
+            await _studentService.FindStudentAsync(id);
+            return Ok();
+        }
+
     }
 }

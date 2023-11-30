@@ -1,5 +1,6 @@
 ﻿using AUA.ProjectName.Common.Tools.Config.JsonSetting;
 using AUA.ProjectName.DataLayer.Tools;
+using AUA.ProjectName.DomainEntities.Entities.School;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -63,11 +64,11 @@ namespace AUA.ProjectName.DataLayer.AppContext.EntityFrameworkContext
 
         private void ApplyRules()
         {
-           //Do any apply roules
+            //Do any apply roules
 
         }
 
-   
+        public DbSet<Student> Students { get; set; }
 
     }
 }
