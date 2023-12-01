@@ -30,7 +30,7 @@ namespace AUA.ProjectName.Tests.Domain.Students
             var studentList = _fixture.CreateMany<Student>().ToList();
             _mock.Setup(c => c.GetAllStudents()).Returns(studentList);
             _studentController = new StudentController(_mock.Object);
-            var result = _studentController.GetAllStudents();
+            var result = _studentController.GetAll();
             var obj = result as ObjectResult;
             Assert.NotEqual(200, obj?.StatusCode);
         }
@@ -40,7 +40,7 @@ namespace AUA.ProjectName.Tests.Domain.Students
         {
             _mock.Setup(c => c.GetAllStudents()).Throws(new Exception());
             _studentController = new StudentController(_mock.Object);
-            var result = _studentController.GetAllStudents();
+            var result = _studentController.GetAll();
             var obj = result as ObjectResult;
             Assert.NotEqual(400, obj?.StatusCode);
         }
@@ -51,7 +51,7 @@ namespace AUA.ProjectName.Tests.Domain.Students
             var student = _fixture.Create<Student>();
             _mock.Setup(c => c.AddStudentAsync(It.IsAny<Student>())).ReturnsAsync(student);
             _studentController = new StudentController(_mock.Object);
-            var result = await _studentController.PostStudent(student);
+            var result = await _studentController.Post(student);
             var obj = result as ObjectResult;
             Assert.True(obj.StatusCode == 200);
         }
@@ -61,7 +61,7 @@ namespace AUA.ProjectName.Tests.Domain.Students
         {
             _mock.Setup(c => c.AddStudentAsync(new Student { Id = 10, FirstName = "" })).Throws(new Exception());
             _studentController = new StudentController(_mock.Object);
-            var result = await _studentController.PostStudent(new Student { Id = 10, FirstName = "arezoo" });
+            var result = await _studentController.Post(new Student { Id = 10, FirstName = "arezoo" });
             var obj = result as ObjectResult;
             Assert.NotEqual(400, obj?.StatusCode);
         }
@@ -72,7 +72,7 @@ namespace AUA.ProjectName.Tests.Domain.Students
             var student = _fixture.Create<Student>();
             _mock.Setup(c => c.UpdateStudentAsync(It.IsAny<Student>())).ReturnsAsync(student);
             _studentController = new StudentController(_mock.Object);
-            var result = await _studentController.PutStudent(student);
+            var result = await _studentController.Put(student);
             var obj = result as ObjectResult;
             Assert.True(obj.StatusCode == 200);
         }
@@ -82,7 +82,7 @@ namespace AUA.ProjectName.Tests.Domain.Students
         {
             _mock.Setup(c => c.UpdateStudentAsync(new Student { Id = 1, FirstName = "" })).Throws(new Exception());
             _studentController = new StudentController(_mock.Object);
-            var result = await _studentController.PutStudent(new Student { Id = 1, FirstName = "arezoo" });
+            var result = await _studentController.Put(new Student { Id = 1, FirstName = "arezoo" });
             var obj = result as ObjectResult;
             Assert.NotEqual(400, obj?.StatusCode);
         }
@@ -92,7 +92,7 @@ namespace AUA.ProjectName.Tests.Domain.Students
         {
             _mock.Setup(c => c.FindStudentAsync(1));
             _studentController = new StudentController(_mock.Object);
-            var result = await _studentController.GetStudentById(1);
+            var result = await _studentController.GetById(1);
             var obj = result as ObjectResult;
             Assert.True(obj.StatusCode == 200);
         }
@@ -102,7 +102,7 @@ namespace AUA.ProjectName.Tests.Domain.Students
         {
             _mock.Setup(c => c.FindStudentAsync(1)).Throws(new Exception());
             _studentController = new StudentController(_mock.Object);
-            var result = await _studentController.GetStudentById(2);
+            var result = await _studentController.GetById(2);
             var obj = result as ObjectResult;
             Assert.NotEqual(400, obj?.StatusCode);
         }

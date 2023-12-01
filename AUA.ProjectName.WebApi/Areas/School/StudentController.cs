@@ -18,27 +18,27 @@ namespace AUA.ProjectName.WebApi.Areas.School
         }
 
         [HttpGet]
-        public IEnumerable<Student> GetAllStudents()
+        public IEnumerable<Student> GetAll()
         {
             return _studentService.GetAllStudents();
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostStudent([FromBody] Student student)
+        public async Task<IActionResult> Post([FromBody] Student student)
         {
             await _studentService.AddStudentAsync(student);
             return Ok(student);
         }
 
         [HttpPut]
-        public async Task<IActionResult> PutStudent([FromBody] Student student)
+        public async Task<IActionResult> Put([FromBody] Student student)
         {
             await _studentService.UpdateStudentAsync(student);
             return Ok(student);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetStudentById(int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
             await _studentService.FindStudentAsync(id);
             return Ok();

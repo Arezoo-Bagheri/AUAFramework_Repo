@@ -1,12 +1,12 @@
 ﻿using AUA.ProjectName.DomainEntities.Entities.School;
-using AUA.ProjectName.Models.EntitiesDto.School;
-using AUA.ProjectName.Models.ViewModels.School;
-using AUA.ServiceInfrastructure.BaseServices;
 
 namespace AUA.ProjectName.Services.EntitiesService.School.Contracts
 {
-    public interface ITeacherService : IGenericEntityService<Teacher, TeacherDto, long>
+    public interface ITeacherService
     {
-        Task<List<TeacherComboVm>> GetTeacherComboVmAsync();
+        IEnumerable<Teacher> GetAllTeachers();
+        Task<Teacher> AddTeacherAsync(Teacher teacher);
+        Task<Teacher> UpdateTeacherAsync(Teacher teacher);
+        Task<Teacher> FindTeacherAsync(int id);
     }
 }
