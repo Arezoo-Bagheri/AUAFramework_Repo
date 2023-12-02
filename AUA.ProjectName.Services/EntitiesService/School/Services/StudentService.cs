@@ -17,6 +17,7 @@ namespace AUA.ProjectName.Services.EntitiesService.School.Services
         public IEnumerable<Student> GetAllStudents()
         {
             return _context.Students.ToList();
+
         }
 
         public async Task<Student> AddStudentAsync(Student student)

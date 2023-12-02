@@ -15,6 +15,6 @@ namespace AUA.ProjectName.DataLayer.AppContext.EntityFrameworkContext
         Task<int> SaveChangesAsync();
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
- 
+
     }
 }
