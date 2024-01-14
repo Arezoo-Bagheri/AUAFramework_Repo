@@ -84,6 +84,6 @@ namespace AUA.ProjectName.Services.EntitiesService.Accounting.Services
             return EResultStatus.Success;
         }
 
-      
+
     }
 }
