@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -19,14 +19,6 @@
   <ItemGroup>
     <ProjectReference Include="..\AUA.ProjectName.Common\AUA.ProjectName.Common.csproj" />
     <ProjectReference Include="..\AUA.ProjectName.DomainEntities\AUA.ProjectName.DomainEntities.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Messaging\RabbitMqSamples\MassTest\" />
-    <Folder Include="Messaging\RabbitMqSamples\Worker\" />
-    <Folder Include="Messaging\RabbitMqSamples\Shared\" />
-    <Folder Include="Messaging\RabbitMqSamples\RPC\" />
-    <Folder Include="Messaging\RabbitMqSamples\PubSub\" />
   </ItemGroup>
 
 </Project>
