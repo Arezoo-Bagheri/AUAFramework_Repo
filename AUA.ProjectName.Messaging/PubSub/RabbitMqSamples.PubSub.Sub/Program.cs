@@ -15,6 +15,7 @@ namespace RabbitMqSamples.PubSub.Sub
 
         static void Main(string[] args)
         {
+            
             CreateConnection();
 
             var cunsumer = new EventingBasicConsumer(_model);
