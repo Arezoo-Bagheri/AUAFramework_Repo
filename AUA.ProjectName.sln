@@ -69,15 +69,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMqSamples", "RabbitMq
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{04EA93D3-61C5-4698-B402-434A98445323}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqSamples.Core", "AUA.ProjectName.Messaging\RabbitMqSamples\Shared\RabbitMqSamples.Core\RabbitMqSamples.Core.csproj", "{D8BE6602-E9B1-4ABE-B386-55342CECB946}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMqSamples.Core", "AUA.ProjectName.Messaging\RabbitMqSamples\Shared\RabbitMqSamples.Core\RabbitMqSamples.Core.csproj", "{D8BE6602-E9B1-4ABE-B386-55342CECB946}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqSamples.Toolkit", "AUA.ProjectName.Messaging\RabbitMqSamples\Shared\RabbitMqSamples.Toolkit\RabbitMqSamples.Toolkit.csproj", "{41E70ECC-B3A9-4DA7-9F91-E49B82B43687}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMqSamples.Toolkit", "AUA.ProjectName.Messaging\RabbitMqSamples\Shared\RabbitMqSamples.Toolkit\RabbitMqSamples.Toolkit.csproj", "{41E70ECC-B3A9-4DA7-9F91-E49B82B43687}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Worker", "Worker", "{13C4D7A1-2CBE-454D-9915-1499D090DA31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqSamples.Worker.Consumer", "AUA.ProjectName.Messaging\RabbitMqSamples\Worker\RabbitMqSamples.Worker.Consumer\RabbitMqSamples.Worker.Consumer.csproj", "{7B358FCB-651D-48B1-BC73-EF7E3C86B180}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMqSamples.Worker.Consumer", "AUA.ProjectName.Messaging\RabbitMqSamples\Worker\RabbitMqSamples.Worker.Consumer\RabbitMqSamples.Worker.Consumer.csproj", "{7B358FCB-651D-48B1-BC73-EF7E3C86B180}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqSamples.Worker.Publisher", "AUA.ProjectName.Messaging\RabbitMqSamples\Worker\RabbitMqSamples.Worker.Publisher\RabbitMqSamples.Worker.Publisher.csproj", "{908864A4-5F50-425C-80E9-A17ECAC73873}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMqSamples.Worker.Publisher", "AUA.ProjectName.Messaging\RabbitMqSamples\Worker\RabbitMqSamples.Worker.Publisher\RabbitMqSamples.Worker.Publisher.csproj", "{908864A4-5F50-425C-80E9-A17ECAC73873}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PubSub", "PubSub", "{8406D99F-BDFB-4328-9E2A-CE59ECC0C305}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqSamples.PubSub.Pub", "AUA.ProjectName.Messaging\RabbitMqSamples\PubSub\RabbitMqSamples.PubSub.Pub\RabbitMqSamples.PubSub.Pub.csproj", "{33E6F983-9668-42A9-AE10-93B79C4216FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqSamples.PubSub.Sub", "AUA.ProjectName.Messaging\RabbitMqSamples\PubSub\RabbitMqSamples.PubSub.Sub\RabbitMqSamples.PubSub.Sub.csproj", "{D4666569-855C-4EFF-8D61-BE62C890F2DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +147,14 @@ Global
 		{908864A4-5F50-425C-80E9-A17ECAC73873}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{908864A4-5F50-425C-80E9-A17ECAC73873}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{908864A4-5F50-425C-80E9-A17ECAC73873}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33E6F983-9668-42A9-AE10-93B79C4216FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33E6F983-9668-42A9-AE10-93B79C4216FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33E6F983-9668-42A9-AE10-93B79C4216FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33E6F983-9668-42A9-AE10-93B79C4216FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4666569-855C-4EFF-8D61-BE62C890F2DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4666569-855C-4EFF-8D61-BE62C890F2DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4666569-855C-4EFF-8D61-BE62C890F2DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4666569-855C-4EFF-8D61-BE62C890F2DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -168,6 +182,9 @@ Global
 		{13C4D7A1-2CBE-454D-9915-1499D090DA31} = {ADB7DA6A-EB5E-4027-90A1-558F8BD07A1D}
 		{7B358FCB-651D-48B1-BC73-EF7E3C86B180} = {13C4D7A1-2CBE-454D-9915-1499D090DA31}
 		{908864A4-5F50-425C-80E9-A17ECAC73873} = {13C4D7A1-2CBE-454D-9915-1499D090DA31}
+		{8406D99F-BDFB-4328-9E2A-CE59ECC0C305} = {ADB7DA6A-EB5E-4027-90A1-558F8BD07A1D}
+		{33E6F983-9668-42A9-AE10-93B79C4216FB} = {8406D99F-BDFB-4328-9E2A-CE59ECC0C305}
+		{D4666569-855C-4EFF-8D61-BE62C890F2DE} = {8406D99F-BDFB-4328-9E2A-CE59ECC0C305}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DF9A9555-9CC8-4BBD-B6E1-9B933F6530E8}
